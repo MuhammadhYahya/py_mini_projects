@@ -9,13 +9,18 @@ def get_balance(budget, expenses):
     return budget - get_total_expenses(expenses)
 
 def show_budget_details(budget, expenses):
+    total_expenses = get_total_expenses(expenses)
+    balance = get_balance(budget, expenses)
     print(f"Total Budget: {budget}")
     print("Expenses:")
     for expense in expenses:
         print(f"- {expense['description']}: {expense['amount']}")
-    print(f"Total Spent: {get_total_expenses(expenses)}")
-    print(f"Remaining Budget: {get_balance(budget, expenses)}")
-
+    print(f"Total Spent: {total_expenses}")
+    if balance >= 0:
+        print(f"Remaining Budget: {balance}")
+    else:
+        print("Remaining Budget: 0")
+        print(f"Debt: {-balance}") 
 
 def main():
     print("Welcome to the Budget App")
